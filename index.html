@@ -7,7 +7,6 @@
     <meta name="google-site-verification" content="-jzMCBwxGrB8ckuwdzsT5BoCSWuQM6_8Dqh1ox7ZkHQ" />
     <meta name="description" content="Detailed view of antique silver flatware and cutlery.">
 
-    <!-- 【关键步骤】这是 Google 能够识别的结构化数据 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -25,23 +24,81 @@
     </script>
 
     <style>
-        /* 简单美观的居中样式 */
-        body { margin: 0; padding: 0; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: sans-serif; }
-        .card { background: white; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; max-width: 90%; text-align: center; }
-        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
-        h1 { font-size: 1.5rem; color: #333; margin-bottom: 10px; }
-        p { color: #666; font-size: 0.9rem; }
+        /* 基础页面样式 */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #f0f0f0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+
+        /* 卡片容器 */
+        .card { 
+            background: white; 
+            padding: 30px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border-radius: 12px; 
+            max-width: 400px; 
+            width: 90%;
+            text-align: center; 
+        }
+
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto; 
+            border-radius: 4px;
+        }
+
+        h1 { font-size: 1.5rem; color: #333; margin: 20px 0 10px; }
+        p { color: #666; font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* 下载按钮样式 */
+        .download-btn {
+            display: inline-block;
+            background-color: #007bff;     /* 按钮蓝色 */
+            color: white;                   /* 文字白色 */
+            padding: 12px 24px;            /* 增加点击区域 */
+            text-decoration: none;          /* 去掉下划线 */
+            border-radius: 6px;            /* 圆角 */
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;     /* 丝滑的过渡动画 */
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+        }
+
+        /* 鼠标悬停效果 */
+        .download-btn:hover {
+            background-color: #0056b3;     /* 颜色加深 */
+            transform: translateY(-2px);    /* 轻微浮起感 */
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* 鼠标按下效果 */
+        .download-btn:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
+
     <div class="card">
         <h1>huangpinqiao nb</h1>
-        <!-- 引用 imgbox 图片 -->
+        
         <img src="https://images2.imgbox.com/8b/a5/q6XuByhE_o.png" alt="Antique Silver Flatware Cutlery">
+        
         <p>Featured in Vintage Collection</p>
+
+        <a href="catalog.xlsx" class="download-btn" download="产品目录.xlsx">
+            📥 下载产品目录 (Excel)
+        </a>
     </div>
+
 </body>
 </html>
-
-
-
