@@ -3,134 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>huangpinqiao nb - Sci-Fi Edition</title>
+    <title>揭阳市裕明兴五金制品厂 - Multilingual Edition</title>
     
     <style>
-        /* 1. 科幻感渐变背景渲染 */
+        /* 1. 全局样式与科幻渐变背景 */
         body { 
             margin: 0; 
             padding: 0; 
-            /* 使用多层径向渐变营造科技深度感 */
             background: radial-gradient(circle at top left, #07c160, transparent),
                         radial-gradient(circle at bottom right, #0056b3, #020b1a);
             background-color: #020b1a;
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            justify-content: center; 
             min-height: 100vh; 
-            font-family: 'Orbitron', 'Segoe UI', sans-serif; /* 这里的 Orbitron 需要联网字体，默认使用 Segoe */
-            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: white;
+            padding: 20px;
+            transition: direction 0.3s ease; /* 平滑切换文字方向 */
         }
 
-        /* 2. 玻璃拟态卡片 */
+        /* RTL 布局适配 */
+        [dir="rtl"] .company-intro {
+            border-left: none;
+            border-right: 4px solid #07c160;
+            border-radius: 10px 0 0 10px;
+            text-align: right;
+        }
+        [dir="rtl"] .header-controls { right: auto; left: 20px; }
+        [dir="rtl"] .whatsapp-float { right: auto; left: 30px; }
+
+        /* 2. 右上角控制区 */
+        .header-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        #langSelect {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 3. 玻璃拟态卡片 */
         .card { 
             background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); /* 背景模糊，科幻感核心 */
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 40px; 
+            padding: 30px; 
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
-            border-radius: 20px; 
-            max-width: 400px; 
-            width: 85%;
+            border-radius: 24px; 
+            max-width: 800px; 
+            width: 90%;
             text-align: center; 
-            color: white;
-        }
-
-        img { 
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-            margin: 0 auto; 
-            border-radius: 12px;
-            filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.5)); /* 图片增加微光 */
+            margin-top: 60px;
         }
 
         h1 { 
-            font-size: 1.8rem; 
-            margin: 20px 0 10px; 
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        p { color: #aaa; font-size: 0.9rem; margin-bottom: 30px; }
-
-        /* 3. 下载按钮：科幻蓝 */
-        .download-btn {
-            display: block;
-            background: transparent;
+            font-size: clamp(1.5rem, 5vw, 2.2rem); 
+            margin-bottom: 20px; 
             color: #00d4ff;
-            padding: 12px;
-            text-decoration: none;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .main-img { 
+            width: 100%; 
+            height: auto;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .company-intro { 
+            text-align: left; 
+            line-height: 1.8; 
+            color: #ddd; 
+            font-size: 1rem; 
+            margin: 25px 0;
+            padding: 20px;
+            border-left: 4px solid #07c160;
+            background: rgba(7, 193, 96, 0.05);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* 4. 产品网格 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .product-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .product-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product-desc { color: #00d4ff; font-weight: 600; }
+
+        /* 5. 按钮 */
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            max-width: 320px;
+            padding: 16px;
+            color: #00d4ff;
             border: 2px solid #00d4ff;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-            box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2), 0 0 10px rgba(0, 212, 255, 0.2);
-        }
-
-        .download-btn:hover {
-            background: #00d4ff;
-            color: #020b1a;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-        }
-
-        /* 4. WhatsApp 悬浮按钮：科幻绿 */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: #25d366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
             text-decoration: none;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
-            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 40px rgba(37, 211, 102, 0.8);
-        }
+        .download-btn:hover { background: #00d4ff; color: #020b1a; }
 
-        /* 简单的呼吸灯动画 */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
         .whatsapp-float {
-            animation: pulse 2s infinite;
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; background: #25d366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 30px; text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>HUANGPINQIAO NB</h1>
-        
-        <img src="https://images2.imgbox.com/8b/a5/q6XuByhE_o.png" alt="Antique Silver Flatware Cutlery">
-        
-        <p>// SYSTEM: VINTAGE COLLECTION_V1.0</p>
+    <div class="header-controls">
+        <select id="langSelect" onchange="updateContent()">
+            <option value="zh">中文 (CN)</option>
+            <option value="en">English (EN)</option>
+            <option value="ar">العربية (AR)</option>
+        </select>
+    </div>
 
-        <a href="catalog.xlsx" class="download-btn" download="产品目录.xlsx">
-            ENTER_DATABASE.xlsx (下载)
+    <div class="card">
+        <h1 id="txt-name">揭阳市裕明兴五金制品厂</h1>
+        <img src="https://images2.imgbox.com/f0/0d/JebTdXCK_o.png" alt="Factory" class="main-img">
+        <div class="company-intro" id="txt-intro">
+            揭阳市裕明兴五金制品厂创建于2003年，是一家专业从事设计，生产，销售各类不锈钢餐具，厨具等五金制品的企业...
+        </div>
+
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="https://images2.imgbox.com/39/3a/vPjYZE6L_o.png" alt="Product 1">
+                <div class="product-desc" id="txt-p1">银色餐具</div>
+            </div>
+            <div class="product-item">
+                <img src="https://images2.imgbox.com/5f/15/4IJgFuxR_o.png" alt="Product 2">
+                <div class="product-desc" id="txt-p2">优雅生活</div>
+            </div>
+        </div>
+
+        <a href="catalog.xlsx" class="download-btn" id="txt-btn" download="Catalog.xlsx">
+            📥 下载产品目录 (.xlsx)
         </a>
     </div>
 
-    <a href="https://wa.me/+8613822919184" class="whatsapp-float" target="_blank">
-        💬
-    </a>
+    <a href="https://wa.me/+8613822919184" class="whatsapp-float">💬</a>
 
+    <script>
+        const data = {
+            zh: {
+                dir: "ltr",
+                name: "揭阳市裕明兴五金制品厂",
+                intro: "揭阳市裕明兴五金制品厂创建于2003年，是一家专业从事设计，生产，销售各类不锈钢餐具，厨具等五金制品的企业。工厂占地面积2000平方米，拥有各种先进设备及各种技术人才。产品深受国内外客户欢迎，大部分远销欧洲，美洲，中东及东南亚一带，在行业内产品中有着相当高的市场占有率和美誉度。欢迎通过WhatsApp联系。",
+                p1: "银色餐具", p2: "优雅生活", btn: "📥 下载产品目录 (.xlsx)"
+            },
+            en: {
+                dir: "ltr",
+                name: "Jieyang Yumingxing Hardware Factory",
+                intro: "Established in 2003, Jieyang Yumingxing Hardware Products Factory specializes in the design, production, and sale of stainless steel flatware and kitchenware. With a 2000sqm facility and advanced equipment, our products are popular in Europe, America, the Middle East, and Southeast Asia. We enjoy a high reputation. Welcome to contact us via WhatsApp.",
+                p1: "Silver Flatware", p2: "Elegant Living", btn: "📥 Download Catalog (.xlsx)"
+            },
+            ar: {
+                dir: "rtl",
+                name: "مصنع جييانغ يومينغشينغ للأجهزة",
+                intro: "تأسس مصنع جييانغ يومينغشينغ لمنتجات الأجهزة في عام 2003، وهو متخصص في تصميم وإنتاج وبيع أدوات المائدة وأدوات المطبخ المصنوعة من الفولاذ المقاوم للصدأ. مع مرفق بمساحة 2000 متر مربع ومعدات متقدمة، تحظى منتجاتنا بشعبية في أوروبا وأمريكا والشرق الأوسط وجنوب شرق آسيا. نحن نتمتع بسمعة طيبة. مرحبًا بكم في الاتصال بنا عبر WhatsApp.",
+                p1: "أدوات مائدة فضية", p2: "حياة أنيقة", btn: "📥 تحميل كتالوج المنتجات (.xlsx)"
+            }
+        };
+
+        function updateContent() {
+            const lang = document.getElementById('langSelect').value;
+            const content = data[lang];
+            
+            document.body.dir = content.dir; // 切换布局方向
+            document.getElementById('txt-name').innerText = content.name;
+            document.getElementById('txt-intro').innerText = content.intro;
+            document.getElementById('txt-p1').innerText = content.p1;
+            document.getElementById('txt-p2').innerText = content.p2;
+            document.getElementById('txt-btn').innerText = content.btn;
+        }
+    </script>
 </body>
 </html>
